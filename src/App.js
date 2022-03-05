@@ -1,9 +1,11 @@
 import './App.css';
+import Form from './Form';
 
 function App() {
   return (
     <div className="App">
-      <p>Food_form</p>
+      <p>Fill the form</p>
+      <Form/>
     </div>
   );
 }
