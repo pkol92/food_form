@@ -1,21 +1,22 @@
 import React from 'react';
 import {useState, useEffect, useRef } from 'react';
 
-const Form = (props) => {
+const Form = props => {
     const [dish, setDish] = useState("pizza");
-    const [food, setFood] = useState(props.food);
+    const [food, setFood] = useState(props.food);   
+    const form = useRef(null);
 
     useEffect(() => {
         setDish(dish);
     }, [dish]);
 
     const submit = e => {
-        e.preventDefault()
-        console.log(food);
+        e.preventDefault();
+        const data = new FormData(form.current);
+        for(const [k,v] of data) {console.log(k,v)}
         // fetch('/api', {
         //     method: 'POST',
-        //     body: JSON.stringify({ food }),
-        //     headers: { 'Content-Type': 'application/json' },
+        //     body: data,
         //   })
         //     .then(res => res.json())
         //     .then(json => setFood(json.food))
@@ -23,13 +24,13 @@ const Form = (props) => {
     
     
     return ( 
-        <form onSubmit={submit}>
+        <form ref={form} onSubmit={submit}>
             <input 
                 name="food[name]" 
                 type="text" 
                 placeholder="Dish name" 
                 required
-                onChange={e => setFood({ ...food, name: e.target.value })}
+                // defaultValue={food.name}
             />
 
             <label htmlFor="preparation_time">Preparation time:</label>
@@ -39,7 +40,7 @@ const Form = (props) => {
                 type="time" 
                 step="2" 
                 required
-                onChange={e => setFood({ ...food, preparation_time: e.target.value })}
+                // defaultValue={food.preparation_time}
             />
 
             <label htmlFor="dish_type">Choose a dish:</label>
@@ -47,7 +48,8 @@ const Form = (props) => {
                 name="food[dish_type]" 
                 id="dish_type" 
                 required 
-                onChange={(e)=> { setDish(e.target.value); setFood({ ...food, dish_type: e.target.value })}}
+                onChange={(e)=>  setDish(e.target.value)}
+                // defaultValue={food.dish_type}
                 >
                 <option value="pizza">Pizza</option>
                 <option value="soup">Soup</option>
@@ -61,15 +63,18 @@ const Form = (props) => {
                     id="no_of_slices" 
                     name = "food[no_of_slices]" 
                     type="number" 
+                    min="1"
                     required
-                    onChange={e => setFood({ ...food, no_of_slices: e.target.value })}
+                    // defaultValue={food.no_of_slices}
                 />
                 <label htmlFor="diameter">Diameter:</label>
                 <input 
                     id="diameter" 
                     name="food[diameter]" 
                     type="number"
-                    onChange={e => setFood({ ...food, diameter: e.target.value })}
+                    min="0.05"
+                    step="0.05"
+                    // defaultValue={food.diameter}
                 />
             </div>
             : null }
@@ -84,7 +89,7 @@ const Form = (props) => {
                     required 
                     min="1" 
                     max="10"
-                    onChange={e => setFood({ ...food, spiciness_scale: e.target.value })}
+                    // defaultValue={food.spiciness_scale}
                 />
             </div>
             : null }
@@ -96,8 +101,10 @@ const Form = (props) => {
                     id="slices_of_bread" 
                     name = "food[slices_of_bread]" 
                     type="number" 
+                    min="0"
+                    step="1"
                     required
-                    onChange={e => setFood({ ...food, slices_of_bread: e.target.value })}
+                    // defaultValue={food.slices_of_bread}
                 />
             </div>
             : null }
