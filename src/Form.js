@@ -28,6 +28,7 @@ const Form = props => {
         //     .then(res => res.json())
         //     .then(json => setFood(json.food))
         setTime("00:00:00");
+        setDish("choose");
         e.target.reset();
         }
         
@@ -36,59 +37,78 @@ const Form = props => {
     
     return ( 
         <form ref={form} onSubmit={submit}>
-            <input 
-                name="food[name]" 
-                type="text" 
-                placeholder="Dish name" 
-                required
-            />
+            <h3>Form for adding dishes</h3>
+            <h4>Fill out the form to add the dish</h4>
 
-            <label htmlFor="preparation_time">Preparation time:</label>
-            <TimeField
-                name="food[preparation_time]" 
-                value={time}
-                showSeconds={true}
-                required
-                onChange={e => {setTime(e.target.value); setVisible(false)}}
-            />
-            
+            <fieldset>
+                <input 
+                    name="food[name]" 
+                    type="text" 
+                    placeholder="Dish name" 
+                    required
+                />
+            </fieldset>
 
-            <label htmlFor="dish_type">Choose a dish:</label>
-            <select 
-                name="food[dish_type]" 
-                id="dish_type" 
-                required 
-                onChange={(e)=>  setDish(e.target.value)}
-                >
-                <option value="choose">Type of dish</option>
-                <option value="pizza">Pizza</option>
-                <option value="soup">Soup</option>
-                <option value="sandwich">Sandwich</option>
-            </select>
+            <fieldset>
+                <label htmlFor="preparation_time">Preparation time:</label>
+                <TimeField
+                    id="preparation_time"
+                    name="food[preparation_time]" 
+                    value={time}
+                    showSeconds={true}
+                    required
+                    onChange={e => {setTime(e.target.value); setVisible(false)}}
+                />
+            </fieldset>
+
+            {(visible === true && time === "00:00:00") ? 
+                    <p>Set the time</p> : null }
+
+            <fieldset>
+                <label htmlFor="dish_type">Choose a dish:</label>
+                <select 
+                    name="food[dish_type]" 
+                    id="dish_type" 
+                    required 
+                    onChange={(e)=>  setDish(e.target.value)}
+                    >
+                    <option value="choose">Type of dish</option>
+                    <option value="pizza">Pizza</option>
+                    <option value="soup">Soup</option>
+                    <option value="sandwich">Sandwich</option>
+                </select>
+            </fieldset>
+
+            {(visible === true && dish === "choose") ? 
+                <p>Choose the type of food</p> : null}
 
             {(dish === "pizza") ? 
             <div>
-                <label htmlFor="no_of_slices">Number of Slices:</label>
-                <input 
-                    id="no_of_slices" 
-                    name = "food[no_of_slices]" 
-                    type="number" 
-                    min="1"
-                    required
-                />
-                <label htmlFor="diameter">Diameter:</label>
-                <input 
-                    id="diameter" 
-                    name="food[diameter]" 
-                    type="number"
-                    min="0.1"
-                    step="0.1"
-                />
+                <fieldset>
+                    <label htmlFor="no_of_slices">Number of Slices:</label>
+                    <input 
+                        id="no_of_slices" 
+                        name = "food[no_of_slices]" 
+                        type="number" 
+                        min="1"
+                        required
+                    />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="diameter">Diameter:</label>
+                    <input 
+                        id="diameter" 
+                        name="food[diameter]" 
+                        type="number"
+                        min="0.1"
+                        step="0.1"
+                    />
+                </fieldset>
             </div>
             : null }
 
             {(dish === "soup") ? 
-            <div>
+            <fieldset>
                 <label htmlFor="spiciness_scale">Spiciness scale (1-10):</label>
                 <input 
                     id="spiciness_scale" 
@@ -98,11 +118,11 @@ const Form = props => {
                     min="1" 
                     max="10"
                 />
-            </div>
+            </fieldset>
             : null }
 
             {(dish === "sandwich") ? 
-            <div>
+            <fieldset>
                 <label htmlFor="slices_of_bread">Slices of bread:</label>
                 <input 
                     id="slices_of_bread" 
@@ -112,16 +132,13 @@ const Form = props => {
                     step="1"
                     required
                 />
-            </div>
+            </fieldset>
             : null }
 
-            {(visible === true && time === "00:00:00") ? 
-                    <li>Set the time</li> : null }
-
-            {(visible === true && dish === "choose") ? 
-                    <li>Choose the type of food</li> : null}
-
-            <input type="submit" value="Add the dish"></input>
+            <fieldset>
+                <input id="submit" type="submit" value="Add the dish"/>
+            </fieldset>
+            
         </form>
     );
 }
