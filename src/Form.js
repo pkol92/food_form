@@ -63,6 +63,7 @@ const Form = props => {
                     id="no_of_slices" 
                     name = "food[no_of_slices]" 
                     type="number" 
+                    min="1"
                     required
                     // defaultValue={food.no_of_slices}
                 />
@@ -71,6 +72,8 @@ const Form = props => {
                     id="diameter" 
                     name="food[diameter]" 
                     type="number"
+                    min="0.05"
+                    step="0.05"
                     // defaultValue={food.diameter}
                 />
             </div>
@@ -98,6 +101,8 @@ const Form = props => {
                     id="slices_of_bread" 
                     name = "food[slices_of_bread]" 
                     type="number" 
+                    min="0"
+                    step="1"
                     required
                     // defaultValue={food.slices_of_bread}
                 />
