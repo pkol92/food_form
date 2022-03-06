@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/food_form/static/css/main.ecdb7c95.css",
-    "main.js": "/food_form/static/js/main.7c73e309.js",
+    "main.js": "/food_form/static/js/main.d3b3839e.js",
     "static/media/pizza.jpg": "/food_form/static/media/pizza.e4be818fbb9ddfd6e600.jpg",
     "index.html": "/food_form/index.html",
     "main.ecdb7c95.css.map": "/food_form/static/css/main.ecdb7c95.css.map",
-    "main.7c73e309.js.map": "/food_form/static/js/main.7c73e309.js.map"
+    "main.d3b3839e.js.map": "/food_form/static/js/main.d3b3839e.js.map"
   },
   "entrypoints": [
     "static/css/main.ecdb7c95.css",
-    "static/js/main.7c73e309.js"
+    "static/js/main.d3b3839e.js"
   ]
 }
