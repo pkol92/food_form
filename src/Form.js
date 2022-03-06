@@ -14,22 +14,28 @@ const Form = props => {
         setDish(dish);
     }, [dish]);
 
+    //function witch send the data from form
     const submit = e => {
         e.preventDefault();
+
         if (time === "00:00:00" || dish === "choose") {
             setVisible(true)
         } else {
             const data = new FormData(form.current);
-        for(const [k,v] of data) {console.log(k,v)};
-        // fetch('/api', {
-        //     method: 'POST',
-        //     body: data,
-        //   })
-        //     .then(res => res.json())
-        //     .then(json => setFood(json.food))
-        setTime("00:00:00");
-        setDish("choose");
-        e.target.reset();
+            //check data from form in console
+            for(const [k,v] of data) {console.log(k,v)};
+
+            fetch('https://frosty-wood-6558.getsandbox.com:443/dishes', {
+                method: 'POST',
+                body: data,
+            })
+                .then(res => res.json())
+                .then(json => setFood(json.food))
+
+            //reset the form's fields
+            setTime("00:00:00");
+            setDish("choose");
+            e.target.reset();
         }
         
     };
