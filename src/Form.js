@@ -121,7 +121,7 @@ const Form = props => {
             {(visible === true && dish === "choose") ? 
                     <li>Choose the type of food</li> : null}
 
-            <input type="submit" value="Submit form"></input>
+            <input type="submit" value="Add the dish"></input>
         </form>
     );
 }
