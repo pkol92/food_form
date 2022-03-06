@@ -1,5 +1,7 @@
 # Foof form app
 
+Demo: https://pkol92.github.io/food_form/
+
 ### Project launch
 After cloning your current project, be sure to run npm install to install all dependencies.
 You can start the project with the command:
