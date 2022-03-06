@@ -33,6 +33,7 @@ const Form = props => {
                 .then(json => setFood(json.food))
 
             //reset the form's fields
+            setVisible(false);
             setTime("00:00:00");
             setDish("choose");
             e.target.reset();
