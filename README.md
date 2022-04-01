@@ -1,4 +1,4 @@
-# Foof form app
+# Food form app
 
 Demo: https://pkol92.github.io/food_form/
 
